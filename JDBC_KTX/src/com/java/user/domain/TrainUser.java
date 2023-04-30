@@ -1,4 +1,4 @@
-package com.java.user;
+package com.java.user.domain;
 
 public class TrainUser {
 

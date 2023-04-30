@@ -2,8 +2,8 @@ package com.java.common;
 
 public enum location {
 	SEOUL,
-	GANGNEUNG,
-	DAEGEON,
+	Chuncheon,
+	DAEJEON,
 	GWANGJU,
 	BUSAN,
 	ALL

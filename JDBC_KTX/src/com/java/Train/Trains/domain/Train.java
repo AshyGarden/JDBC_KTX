@@ -1,21 +1,22 @@
-package com.java.Train;
+package com.java.Train.Trains.domain;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
+//import java.time.LocalDateTime;
 
 public class Train {
 
 	private int trainNo;                //열차번호  
 	
     private String trainStart;          //열차가 출발하는 곳
-    private LocalDateTime trainDepart;  //예매한 열차출발시간 
+    private Date trainDepart;           //예매한 열차출발시간 
     
     private String trainTogo;           //열차가 도착하는 곳   
-    private LocalDateTime trainArrive;  //예매한 열차도착예정시간     
+    private Date trainArrive;           //예매한 열차도착예정시간     
     private int trainPrice;             //열차표 가격
     
     public Train() {}
 
-	public Train(int trainNo, String trainStart, LocalDateTime trainDepart, String trainTogo, LocalDateTime trainArrive,
+	public Train(int trainNo, String trainStart, Date trainDepart, String trainTogo, Date trainArrive,
 			int trainPrice) {
 		super();
 		this.trainNo = trainNo;
@@ -42,11 +43,11 @@ public class Train {
 		this.trainStart = trainStart;
 	}
 
-	public LocalDateTime getTrainDepart() {
+	public Date getTrainDepart() {
 		return trainDepart;
 	}
 
-	public void setTrainDepart(LocalDateTime trainDepart) {
+	public void setTrainDepart(Date trainDepart) {
 		this.trainDepart = trainDepart;
 	}
 
@@ -58,11 +59,11 @@ public class Train {
 		this.trainTogo = trainTogo;
 	}
 
-	public LocalDateTime getTrainArrive() {
+	public Date getTrainArrive() {
 		return trainArrive;
 	}
 
-	public void setTrainArrive(LocalDateTime trainArrive) {
+	public void setTrainArrive(Date trainArrive) {
 		this.trainArrive = trainArrive;
 	}
 
