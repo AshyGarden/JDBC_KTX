@@ -5,7 +5,7 @@ import com.java.common.AppService;
 
 import static com.java.view.AppUI.*;
 
-public class TrainSeatsService<TrainSeats> implements AppService{
+public class TrainSeatsService implements AppService{
 
 	private final TrainSeatsRepository trainSeatsRepository = new TrainSeatsRepository();
 	

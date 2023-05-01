@@ -16,6 +16,7 @@ public class TrainSeatsRepository {
 	
 	TrainSeats tseats;
 	
+	//좌석번호
 	public List<TrainSeats> findTrainSeats(String tSeatNo) {
 		List<TrainSeats> selectTrainSeat = new ArrayList<>();
 		String sql = "SELECT * FROM train WHERE train_seat=? AND train_isrsv=?";			
@@ -35,13 +36,38 @@ public class TrainSeatsRepository {
 							rs.getString("train_isrsv")							
 						);
 				selectTrainSeat.add(trainSeats);
-			}
-				
+			}			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
 		return selectTrainSeat;
 	}
-		
+	
+	//Overloading - 열차번호
+	public List<TrainSeats> findTrainSeats(int tNo) {
+		List<TrainSeats> selectTrainSeat = new ArrayList<>();
+		String sql = "SELECT * FROM train WHERE train_num=?";			
+		try(Connection conn = connection.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);) {
+			pstmt.setInt(1, tNo); 
+			//pstmt.setString(2, tseats.getTrainIsrsv()); 
+			ResultSet rs = pstmt.executeQuery();
+				
+			while(rs.next()) {				
+				TrainSeats trainSeats 
+				= new TrainSeats(													
+							rs.getString("train_seat"),
+							rs.getInt("train_num"),
+							rs.getString("train_col"),
+							rs.getString("train_rev"),
+							rs.getString("train_isrsv")							
+						);
+				selectTrainSeat.add(trainSeats);
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return selectTrainSeat;
+	}
 
 }

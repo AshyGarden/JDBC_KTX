@@ -119,3 +119,24 @@ INSERT INTO train_seats VALUES('8001CR', 8001, 'C', 'true', 'false');
 INSERT INTO train_seats VALUES('8001CF', 8001, 'C', 'false', 'true');
 INSERT INTO train_seats VALUES('8001DR', 8001, 'D', 'true', 'false');
 INSERT INTO train_seats VALUES('8001DF', 8001, 'D', 'false', 'false');
+
+
+--
+DROP TABLE train_sugesstion;
+CREATE TABLE train_sugesstion(
+    suggestNum NUMBER(5) PRIMARY KEY,
+    user_id VARCHAR2(20) UNIQUE NOT NULL,
+    user_suggestion VARCHAR2(200)
+);
+
+CREATE SEQUENCE ts_seq
+    START WITH 1
+    INCREMENT BY 1
+    MAXVALUE 1000
+    NOCYCLE
+    NOCACHE;
+
+INSERT INTO train_sugesstion VALUES(ts_seq.NEXTVAL, 'park3568', '이거 왜 예약이 안되요?');
+INSERT INTO train_sugesstion VALUES(ts_seq.NEXTVAL, 'kyoung7710', '혹시 6월달 열차 시간은 언제쯤 업로드 되나요?');
+INSERT INTO train_sugesstion VALUES(ts_seq.NEXTVAL, 'choi2580', '아 빨리 여행가고 싶다.');
+INSERT INTO train_sugesstion VALUES(ts_seq.NEXTVAL, 'sim3468', '윗 댓님 여기 건의게시판이에요.');

@@ -109,13 +109,13 @@ public class TrainUser {
 
 	@Override
 	public String toString() {
-		return "## 회원번호=" + userNum + 
-				", 아이디=" + userId + 
-				", 에산=" + budget
-				+ ", 10% 할인 쿠폰 개수=" + coupons + 
-				", 예매한 열차번호=" + rsvTrainTno + 
-				", 예매한 열차좌석번호=" + rsvTrainSeat
-				+ ", 예매한 열차 좌석의 정방향 여부=" + rsvTrainRev;
+		return "## 회원번호: " + userNum + 
+				", 아이디: " + userId + 
+				", 에산: " + budget
+				+ ", 10% 할인 쿠폰 개수: " + coupons + 
+				"\n예매한 열차번호: " + rsvTrainTno + 
+				", 예매한 열차좌석번호: " + rsvTrainSeat
+				+ ", 예매한 열차 좌석의 정방향 여부: " + rsvTrainRev;
 	}
 	
 	

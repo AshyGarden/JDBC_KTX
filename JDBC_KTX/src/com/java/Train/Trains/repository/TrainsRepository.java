@@ -16,7 +16,7 @@ public class TrainsRepository {
 	//열차의 번호로 정보 검색
 	public List<Train> findByTrainName(int trainNo) {
 		List<Train> selectTrainList = new ArrayList<>();
-		String sql = "SELECT * FROM train WHERE trainNo=?";			
+		String sql = "SELECT * FROM train WHERE train_num=?";			
 		try(Connection conn = connection.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);) {
 			pstmt.setInt(1, trainNo); //
