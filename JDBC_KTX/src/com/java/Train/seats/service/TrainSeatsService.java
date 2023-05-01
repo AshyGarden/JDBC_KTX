@@ -4,23 +4,23 @@ import com.java.Train.seats.repository.TrainSeatsRepository;
 import com.java.common.AppService;
 
 import static com.java.view.AppUI.*;
-import static com.java.common.location.*;
+import static com.java.common.Location.*;
 
-public class TrainSeatsService implements AppService{
+public class TrainSeatsService<TrainSeats> implements AppService{
 private final TrainSeatsRepository trainSeatsRepository = new TrainSeatsRepository();
 	
 	@Override
 	public void start() {
 		while(true) {
-			SeatsSituationScreen();
+			TrainSeatsSituationScreen();
 			int selection = inputInteger();
 			
 			switch (selection) {
 			case 1:
-				//insertMovieData();
+				
 				break;
 			case 2:
-				//showSearchResult();
+				
 				break;
 			case 3:
 				return;
@@ -32,7 +32,5 @@ private final TrainSeatsRepository trainSeatsRepository = new TrainSeatsReposito
 			inputString();
 		}
 	}
-	
-	
 
 }

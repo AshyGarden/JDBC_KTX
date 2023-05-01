@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DataBaseConnection {
+public class DataBaseConnection { //database연동
 	private DataBaseConnection() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");

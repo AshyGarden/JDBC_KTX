@@ -77,12 +77,12 @@ public class Train {
 
 	@Override
 	public String toString() {
-		return "##열차정보 열차번호=" + trainNo + 
+		return "##열차정보 <열차번호=" + trainNo + 
 				", 출발지=" + trainStart + 
 				", 출발시간=" + trainDepart +
 				", 도착지=" + trainTogo + 
 				", 예정도착시간=" + trainArrive + 
-				", 가격=" + trainPrice;
+				", 가격=" + trainPrice+">";
 	}
 
 	
