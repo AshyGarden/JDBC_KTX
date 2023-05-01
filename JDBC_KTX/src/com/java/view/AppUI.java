@@ -41,7 +41,7 @@ public class AppUI {
 	// 현제좌석정보 화면 출력(1번)
 	
 	  public static void TrainSituationScreen() {
-	  System.out.println("\n========== 현재열차정보 ==========");
+	  System.out.println("\n========== 현재열차운행정보 ==========");
 	  System.out.println("### 1000. 모든 열차의 정보");
 	  System.out.println("### 2001. 새마을"); 
 	  System.out.println("### 4001. 무궁화");	  

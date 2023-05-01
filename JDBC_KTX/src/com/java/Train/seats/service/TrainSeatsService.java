@@ -4,10 +4,10 @@ import com.java.Train.seats.repository.TrainSeatsRepository;
 import com.java.common.AppService;
 
 import static com.java.view.AppUI.*;
-import static com.java.common.Location.*;
 
 public class TrainSeatsService<TrainSeats> implements AppService{
-private final TrainSeatsRepository trainSeatsRepository = new TrainSeatsRepository();
+
+	private final TrainSeatsRepository trainSeatsRepository = new TrainSeatsRepository();
 	
 	@Override
 	public void start() {

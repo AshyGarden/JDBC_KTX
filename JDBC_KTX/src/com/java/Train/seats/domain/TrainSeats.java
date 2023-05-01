@@ -1,22 +1,24 @@
 package com.java.Train.seats.domain;
 
 public class TrainSeats {
+	private String  trainSeat;      //예매한 열차의 좌석번호
     private int trainNo;            //열차번호 
-    private String trainSeat;       //예매한 열차의 좌석번호
+    private String trainCol;        //열차의 열
     private String trainRev;        //예매한 좌석의 정방향여부 
     private String trainIsrsv;      //좌석의 예매 여부
     
     public TrainSeats() {}
 
-    public TrainSeats(int trainNo, String trainSeat, String trainRev, String trainIsrsv) {
-        super();
-        this.trainNo = trainNo;
-        this.trainSeat = trainSeat;
-        this.trainRev = trainRev;
-        this.trainIsrsv = trainIsrsv;
-    }
+    public TrainSeats(String trainSeat, int trainNo, String trainCol, String trainRev, String trainIsrsv) {
+		super();
+		this.trainSeat = trainSeat;
+		this.trainNo = trainNo;
+		this.trainCol = trainCol;
+		this.trainRev = trainRev;
+		this.trainIsrsv = trainIsrsv;
+	}
 
-    public int getTrainNo() {
+	public int getTrainNo() {
         return trainNo;
     }
 
@@ -48,13 +50,13 @@ public class TrainSeats {
         this.trainIsrsv = trainIsrsv;
     }
 
-    @Override
-    public String toString() {
-        return "열차좌석정보 열차번호" + trainNo + 
-                ", 열차좌석번호" + trainSeat + 
-                ", 정방향 좌석여부=" + trainRev
-                + ", 예약여부=" + trainIsrsv;
-    }
-    
+	@Override
+	public String toString() {
+		return "열차좌석정보 <열차좌석번호: " + trainSeat 
+				+ ", 열차번호: " + trainNo 
+				+ ", 탑승열차의 열: " + trainCol 
+				+ ", 정방향 좌석여부: "+ trainRev 
+				+ ", 예약여부: " + trainIsrsv + ">";
+	} 
 
 }

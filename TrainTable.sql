@@ -73,48 +73,49 @@ VALUES(8001, 'SEOUL',  TO_DATE('2023/05/12 12:00', 'YYYY/MM/DD HH24:MI'), 'BUSAN
 
 DROP TABLE train_seats;
 CREATE TABLE train_seats(
-    train_num NUMBER(5) NOT NULL,               --열차번호 
-    train_seat VARCHAR2(3),                     --예매한 열차의 좌석번호
-    train_rev VARCHAR2(5),                      --예매한 좌석의 정방향여부 
-    train_isrsv VARCHAR2(5) NOT NULL            --좌석의 예매 여부
+    train_seat VARCHAR2(10) PRIMARY KEY,         --예매한 열차의 좌석번호-pk
+    train_num NUMBER(10) NOT NULL,               --열차번호 
+    train_col VARCHAR2(5) NOT NULL,              --애매한 열차 열
+    train_rev VARCHAR2(10)NOT NULL,              --예매한 좌석의 정방향여부 
+    train_isrsv VARCHAR2(10) NOT NULL            --좌석의 예매 여부
 );
 
 --무궁화호
-INSERT INTO train_seats VALUES(2001, 'A', 'true', 'true');
-INSERT INTO train_seats VALUES(2001, 'A', 'false', 'false');
-INSERT INTO train_seats VALUES(2001, 'B', 'true', 'false');
-INSERT INTO train_seats VALUES(2001, 'B', 'false', 'false');
-INSERT INTO train_seats VALUES(2001, 'C', 'true', 'false');
-INSERT INTO train_seats VALUES(2001, 'C', 'false', 'true');
-INSERT INTO train_seats VALUES(2001, 'D', 'true', 'true');
-INSERT INTO train_seats VALUES(2001, 'D', 'false', 'false');
+INSERT INTO train_seats VALUES('2001AR', 2001, 'A', 'true', 'true');
+INSERT INTO train_seats VALUES('2001AF', 2001, 'A', 'false', 'false');
+INSERT INTO train_seats VALUES('2001BR', 2001, 'B', 'true', 'false');
+INSERT INTO train_seats VALUES('2001BF', 2001, 'B', 'false', 'false');
+INSERT INTO train_seats VALUES('2001CR', 2001, 'C', 'true', 'false');
+INSERT INTO train_seats VALUES('2001CF', 2001, 'C', 'false', 'true');
+INSERT INTO train_seats VALUES('2001DR', 2001, 'D', 'true', 'true');
+INSERT INTO train_seats VALUES('2001DF', 2001, 'D', 'false', 'false');
 
 --새마을호
-INSERT INTO train_seats VALUES(4001, 'A', 'true', 'false');
-INSERT INTO train_seats VALUES(4001, 'A', 'false', 'false');
-INSERT INTO train_seats VALUES(4001, 'B', 'true', 'false');
-INSERT INTO train_seats VALUES(4001, 'B', 'false', 'true');
-INSERT INTO train_seats VALUES(4001, 'C', 'true', 'false');
-INSERT INTO train_seats VALUES(4001, 'C', 'false', 'false');
-INSERT INTO train_seats VALUES(4001, 'D', 'true', 'false');
-INSERT INTO train_seats VALUES(4001, 'D', 'false', 'false');
+INSERT INTO train_seats VALUES('4001AR', 4001, 'A', 'true', 'false');
+INSERT INTO train_seats VALUES('4001AF', 4001, 'A', 'false', 'false');
+INSERT INTO train_seats VALUES('4001BR', 4001, 'B', 'true', 'false');
+INSERT INTO train_seats VALUES('4001BF', 4001, 'B', 'false', 'true');
+INSERT INTO train_seats VALUES('4001CR', 4001, 'C', 'true', 'false');
+INSERT INTO train_seats VALUES('4001CF', 4001, 'C', 'false', 'false');
+INSERT INTO train_seats VALUES('4001DR', 4001, 'D', 'true', 'false');
+INSERT INTO train_seats VALUES('4001DF', 4001, 'D', 'false', 'false');
 
 --ITX
-INSERT INTO train_seats VALUES(6001, 'A', 'true','true');
-INSERT INTO train_seats VALUES(6001, 'A', 'false','false');
-INSERT INTO train_seats VALUES(6001, 'B', 'true','false');
-INSERT INTO train_seats VALUES(6001, 'B', 'false','false');
-INSERT INTO train_seats VALUES(6001, 'C', 'true','false');
-INSERT INTO train_seats VALUES(6001, 'C', 'false','false');
-INSERT INTO train_seats VALUES(6001, 'D', 'true','false');
-INSERT INTO train_seats VALUES(6001, 'D', 'false','false');
+INSERT INTO train_seats VALUES('6001AR', 6001, 'A', 'true', 'true');
+INSERT INTO train_seats VALUES('6001AF', 6001, 'A', 'false', 'false');
+INSERT INTO train_seats VALUES('6001BR', 6001, 'B', 'true', 'false');
+INSERT INTO train_seats VALUES('6001BF', 6001, 'B', 'false', 'true');
+INSERT INTO train_seats VALUES('6001CR', 6001, 'C', 'true', 'false');
+INSERT INTO train_seats VALUES('6001CF', 6001, 'C', 'false', 'false');
+INSERT INTO train_seats VALUES('6001DR', 6001, 'D', 'true', 'false');
+INSERT INTO train_seats VALUES('6001DF', 6001, 'D', 'false', 'false');
 
 --KTX
-INSERT INTO train_seats VALUES(8001, 'A', 'true','false');
-INSERT INTO train_seats VALUES(8001, 'A', 'false','false');
-INSERT INTO train_seats VALUES(8001, 'B', 'true','false');
-INSERT INTO train_seats VALUES(8001, 'B', 'false','false');
-INSERT INTO train_seats VALUES(8001, 'C', 'true','false');
-INSERT INTO train_seats VALUES(8001, 'C', 'false','true');
-INSERT INTO train_seats VALUES(8001, 'D', 'true','false');
-INSERT INTO train_seats VALUES(8001, 'D', 'false','false');
+INSERT INTO train_seats VALUES('8001AR', 8001, 'A', 'true', 'true');
+INSERT INTO train_seats VALUES('8001AF', 8001, 'A', 'false', 'false');
+INSERT INTO train_seats VALUES('8001BR', 8001, 'B', 'true', 'false');
+INSERT INTO train_seats VALUES('8001BF', 8001, 'B', 'false', 'false');
+INSERT INTO train_seats VALUES('8001CR', 8001, 'C', 'true', 'false');
+INSERT INTO train_seats VALUES('8001CF', 8001, 'C', 'false', 'true');
+INSERT INTO train_seats VALUES('8001DR', 8001, 'D', 'true', 'false');
+INSERT INTO train_seats VALUES('8001DF', 8001, 'D', 'false', 'false');

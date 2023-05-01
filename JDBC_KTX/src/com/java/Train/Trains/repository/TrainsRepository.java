@@ -8,20 +8,18 @@ import java.util.List;
 
 import com.java.Train.Trains.domain.Train;
 import com.java.common.DataBaseConnection;
-import com.java.common.Location;
-import com.java.common.TrainNum;
 
 public class TrainsRepository {
 	private DataBaseConnection connection 
 	= DataBaseConnection.getInstance();
 
 	//열차의 번호로 정보 검색
-	public List<Train> findByTrainName(String trainNo) {
-		List<Train> trainList = new ArrayList<>();
+	public List<Train> findByTrainName(int trainNo) {
+		List<Train> selectTrainList = new ArrayList<>();
 		String sql = "SELECT * FROM train WHERE trainNo=?";			
 		try(Connection conn = connection.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);) {
-			pstmt.setString(1, trainNo); //
+			pstmt.setInt(1, trainNo); //
 			ResultSet rs = pstmt.executeQuery();
 				
 			while(rs.next()) {				
@@ -33,13 +31,13 @@ public class TrainsRepository {
 							rs.getDate("train_arrive"),
 							rs.getInt("train_price")
 						);
-				trainList.add(train);
+				selectTrainList.add(train);
 			}
 				
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
-		return trainList;
+		return selectTrainList;
 	}
 		
 		
@@ -68,21 +66,4 @@ public class TrainsRepository {
 			}	
 			return trainList;
 		}
-		
-	public List<Train> searchTrainList(TrainNum tNum, String keyword){
-		String sql ="";
-		List<Train> trainList = new ArrayList<>();
-	
-		System.out.println("sql: " + sql);
-			
-		try(Connection conn = connection.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql)) {
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-			
-		return trainList;
-	}
 }
