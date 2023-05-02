@@ -4,7 +4,7 @@ import com.java.Train.Trains.service.TrainService;
 import com.java.Train.seats.service.TrainSeatsService;
 import com.java.common.AppService;
 import com.java.user.service.TrainUserService;
-import com.java.user.service.TrainUserSuggetions;
+import com.java.user.service.TrainUserSuggetionService;
 
 public class AppController {
 	private AppService service =  new TrainService();;
@@ -24,7 +24,7 @@ public class AppController {
 			service =  new TrainUserService();
 			break;
 		case 7: //예매 프로그램 건의사항 작성하기
-			service = new TrainUserSuggetions();
+			service = new TrainUserSuggetionService();
 			break;
 		case 9: //프로그램 종료
 			System.out.println("# 프로그램을 종료합니다.");
