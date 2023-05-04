@@ -12,6 +12,15 @@ public class TrainUser {
 	private String rsvTrainRev;  //예매한 좌석의 정방향여부
 		
 	public TrainUser() {}
+	
+	public TrainUser(String userId, int budget, int rsvTrainTno, String rsvTrainSeat, String rsvTrainRev) {
+		super();
+		this.userId = userId;
+		this.budget = budget;
+		this.rsvTrainTno = rsvTrainTno;
+		this.rsvTrainSeat = rsvTrainSeat;
+		this.rsvTrainRev = rsvTrainRev;
+	}
 
 	public TrainUser(int userNum, String userId, String userPw, int budget, int coupons, int rsvTrainTno,
 			String rsvTrainSeat, String rsvTrainRev) {
@@ -109,13 +118,18 @@ public class TrainUser {
 
 	@Override
 	public String toString() {
-		return "## 회원번호: " + userNum + 
-				", 아이디: " + userId + 
-				", 에산: " + budget
-				+ ", 10% 할인 쿠폰 개수: " + coupons + 
-				"\n예매한 열차번호: " + rsvTrainTno + 
-				", 예매한 열차좌석번호: " + rsvTrainSeat
-				+ ", 예매한 열차 좌석의 정방향 여부: " + rsvTrainRev;
+		if(userNum == 0) {
+			return "아이디: " + userId
+					+ "\n예매한 열차좌석: " + rsvTrainTno + rsvTrainSeat + rsvTrainRev;				
+		} else {
+			return "## 회원번호: " + userNum + 
+					", 아이디: " + userId + 
+					", 소지금: " + budget
+					+ ", 10% 할인 쿠폰 개수: " + coupons + 
+					"\n예매한 열차번호: " + rsvTrainTno + 
+					", 예매한 열차좌석번호: " + rsvTrainSeat
+					+ ", 예매한 열차 좌석의 정방향 여부: " + rsvTrainRev;		
+		}	
 	}
 	
 	

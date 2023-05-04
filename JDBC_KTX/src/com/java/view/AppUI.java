@@ -28,19 +28,15 @@ public class AppUI {
 	public static void startScreen() {
 		System.out.println("\n========== KTX 예매 관리 시스템 ==========");
 		System.out.println("### 1. 현재열차정보 ");
-		System.out.println("### 2. 현재좌석정보 ");
+		System.out.println("### 2. 현재좌석정보 ");		
+		System.out.println("### 3. 좌석 예매하기 & 예매한 좌석정보 보기 ");
 		
-		System.out.println("### 3. 좌석 예매하기 ");
+		System.out.println("### 4. 예매좌석취소 ");		
 		
-		System.out.println("### 4. 예매한 좌석정보 ");
-		
-		System.out.println("### 5. 예매좌석취소 ");		
-		
-		System.out.println("### 7. 예매 프로그램 건의사항 작성하기");
-		
+		System.out.println("### 7. 예매 프로그램 건의사항 작성하기");	
 		System.out.println("### 9. 예매 프로그램 종료하기 ");
 		
-		System.out.println("### 99. 달리는 기차 감상하기");
+		//System.out.println("### 99. 달리는 기차 감상하기");
 		System.out.print(">>>");
 	}
 
@@ -94,7 +90,7 @@ public class AppUI {
 		
 	// 좌석 취소하기(5번) - update & delete
 	public static void SeatsCancelationScreen() {
-		System.out.println("\n========= 좌석 취소하기 =========");
+		System.out.println("### 1. 예매 취소하기");
 		System.out.println("### 9. 메인 페이지로 돌아가기");
 		System.out.println("----------------------------------------");
 		System.out.print(">>> "); 

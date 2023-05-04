@@ -2,8 +2,6 @@ package com.java.Train.Trains.service;
 
 import com.java.Train.Trains.domain.Train;
 import com.java.Train.Trains.repository.TrainsRepository;
-import com.java.Train.seats.domain.TrainSeats;
-import com.java.Train.seats.repository.TrainSeatsRepository;
 import com.java.common.AppService;
 
 import static com.java.view.AppUI.*;
@@ -13,7 +11,7 @@ import java.util.List;
 public class TrainService implements AppService {
 	
 	private final TrainsRepository trainsRepository = new TrainsRepository();
-	private final TrainSeatsRepository trainSeatsRepository = new TrainSeatsRepository();
+
 	@Override
 	public void start() {
 		while(true){

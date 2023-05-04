@@ -1,20 +1,22 @@
 --유저정보
-DROP TABLE train_users;
 CREATE TABLE train_users(
-    user_num NUMBER(4) PRIMARY KEY,             --유저번호
-    user_id VARCHAR2(20) UNIQUE NOT NULL,       --유저 아이디
-    user_pw VARCHAR2(20) NOT NULL,              --유저 비밀번호
-    user_budget NUMBER(9) NOT NULL,             --유저의 자산 --표값계산
-    user_discount NUMBER(3),                    --유저의 할인쿠폰 개수(10%)   
-    user_rsv_train_tno NUMBER(4),               --예매한 열차번호
-    user_rsv_train_rseat VARCHAR2(3),           --예매한 열차의 좌석번호
-    user_rsv_train_rev VARCHAR2(5)              --예매한 좌석의 정방향여부
+    user_num NUMBER(4) PRIMARY KEY,                --유저번호
+    user_id VARCHAR2(20) UNIQUE NOT NULL,          --유저 아이디
+    user_pw VARCHAR2(20) NOT NULL,                 --유저 비밀번호
+    user_budget NUMBER(9) NOT NULL,                --유저의 자산 --표값계산
+    user_discount NUMBER(3) DEFAULT 0,             --유저의 할인쿠폰 개수(10%)   
+    user_rsv_train_tno NUMBER(4) DEFAULT 0,        --예매한 열차번호
+    user_rsv_train_rseat VARCHAR2(3) DEFAULT 'N',  --예매한 열차의 열
+    user_rsv_train_rev VARCHAR2(5)  DEFAULT 'N'    --예매한 좌석의 정방향여부
 );
+
+DROP TABLE train_users;
 ----------------------------------------------------------------------
 -- ktx 8000번대
 -- itx 6000번대
 -- Saemaeul 4000번대
 -- Mugunghwa 2000번대
+
 --열차예매 안한 사람들(1001~1003)
 INSERT INTO train_users
     (user_num,user_id,user_pw,user_budget)
@@ -39,10 +41,26 @@ INSERT INTO train_users
 VALUES(1008, 'kyoung7710','kyoung7710', 10000, 4, 2001, 'C', 'false'); 
 INSERT INTO train_users
 VALUES(1009, 'gong4228','gong4228', 30000, 0, 2001, 'A', 'true'); 
+
+UPDATE train_users SET  user_rsv_train_tno = 8001,  user_rsv_train_rseat ='C',  user_rsv_train_rev = 'false'
+WHERE user_id = 'choi2580';
+UPDATE train_users SET  user_budget =70000
+WHERE user_id = 'choi2580';
+UPDATE train_users SET  user_rsv_train_tno = null,  user_rsv_train_rseat = null,  user_rsv_train_rev = null
+WHERE user_id = 'choi2580';
+
+UPDATE train_users SET  user_rsv_train_tno = 0,  user_rsv_train_rseat ='N',  user_rsv_train_rev = 'N'
+WHERE user_id = 'kim1234';
+UPDATE train_users SET  user_budget =50000
+WHERE user_id = 'kim1234';
+
+COMMIT;
+
+
+COMMIT;
 ---------------------------------------------------------------------------
 
 --열차 정보
-DROP TABLE train;
 CREATE TABLE train(
     train_num NUMBER(5) PRIMARY KEY,            --열차번호  
     train_start VARCHAR2(10) NOT NULL,          --열차가 출발하는 곳
@@ -52,6 +70,7 @@ CREATE TABLE train(
     train_price NUMBER(5) NOT NULL              --열차표 가격
 );
 
+DROP TABLE train;
 SELECT * FROM train;
 
 -- Mugunghwa 2000번대 30000원
@@ -71,7 +90,7 @@ INSERT INTO train
 VALUES(8001, 'SEOUL',  TO_DATE('2023/05/12 12:00', 'YYYY/MM/DD HH24:MI'), 'BUSAN',  TO_DATE('2023/05/12 16:00', 'YYYY/MM/DD HH24:MI'),60000); 
 ---------------------------------------------------------------------------------------------------------------
 
-DROP TABLE train_seats;
+
 CREATE TABLE train_seats(
     train_seat VARCHAR2(10) PRIMARY KEY,         --예매한 열차의 좌석번호-pk
     train_num NUMBER(10) NOT NULL,               --열차번호 
@@ -80,6 +99,7 @@ CREATE TABLE train_seats(
     train_isrsv VARCHAR2(10) NOT NULL            --좌석의 예매 여부
 );
 
+DROP TABLE train_seats;
 --무궁화호
 INSERT INTO train_seats VALUES('2001AR', 2001, 'A', 'true', 'true');
 INSERT INTO train_seats VALUES('2001AF', 2001, 'A', 'false', 'false');
@@ -119,24 +139,52 @@ INSERT INTO train_seats VALUES('8001CR', 8001, 'C', 'true', 'false');
 INSERT INTO train_seats VALUES('8001CF', 8001, 'C', 'false', 'true');
 INSERT INTO train_seats VALUES('8001DR', 8001, 'D', 'true', 'false');
 INSERT INTO train_seats VALUES('8001DF', 8001, 'D', 'false', 'false');
-
+COMMIT;
 
 --
-DROP TABLE train_sugesstion;
-CREATE TABLE train_sugesstion(
+DROP TABLE train_suggestion;
+
+CREATE TABLE train_suggestion(
     suggestNum NUMBER(5) PRIMARY KEY,
     user_id VARCHAR2(20) UNIQUE NOT NULL,
     user_suggestion VARCHAR2(200)
 );
 
+DROP SEQUENCE ts_seq;
 CREATE SEQUENCE ts_seq
     START WITH 1
     INCREMENT BY 1
     MAXVALUE 1000
     NOCYCLE
     NOCACHE;
+COMMIT;
+INSERT INTO train_suggestion VALUES(ts_seq.NEXTVAL, 'park3568', '이거 왜 예약이 안되요?');
+INSERT INTO train_suggestion VALUES(ts_seq.NEXTVAL, 'kyoung7710', '혹시 6월달 열차 시간은 언제쯤 업로드 되나요?');
+INSERT INTO train_suggestion VALUES(ts_seq.NEXTVAL, 'choi2580', '아 빨리 여행가고 싶다.');
+INSERT INTO train_suggestion VALUES(ts_seq.NEXTVAL, 'sim3468', '윗 댓님 여기 건의게시판이에요.');
 
-INSERT INTO train_sugesstion VALUES(ts_seq.NEXTVAL, 'park3568', '이거 왜 예약이 안되요?');
-INSERT INTO train_sugesstion VALUES(ts_seq.NEXTVAL, 'kyoung7710', '혹시 6월달 열차 시간은 언제쯤 업로드 되나요?');
-INSERT INTO train_sugesstion VALUES(ts_seq.NEXTVAL, 'choi2580', '아 빨리 여행가고 싶다.');
-INSERT INTO train_sugesstion VALUES(ts_seq.NEXTVAL, 'sim3468', '윗 댓님 여기 건의게시판이에요.');
+SELECT tu.user_id, tu.user_rsv_train_tno, tu.user_rsv_train_rseat, tu.user_rsv_train_rev
+FROM train_users tu
+JOIN train_seats ts
+ON tu.user_rsv_train_tno = ts.train_num 
+AND tu.user_rsv_train_rseat = ts.train_col 
+AND tu.user_rsv_train_rev = ts.train_rev
+WHERE ts.train_isrsv='true' AND tu.user_id='gong4228'; --id=?
+
+/*
+SELECT tu.user_id, ts.train_seat
+FROM train_users tu
+LEFT OUTER JOIN train_seats ts
+ON UPPER(TO_CHAR(tu.user_rsv_train_tno)||TO_CHAR(tu.user_rsv_train_rseat)||TO_CHAR(tu.user_rsv_train_rev)) = UPPER(ts.train_seat)
+WHERE ts.train_isrsv='true';
+*/
+
+--TO_CHAR(train_users.user_rsv_train_tno);
+--TO_CHAR(train_seats.train_num || train_seats.train_col);
+
+UPDATE train_seats SET train_isrsv='true'
+WHERE train_seat = '8001CF';
+
+COMMIT;
+ROLLBACK;
+

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.java.common.DataBaseConnection;
-import com.java.user.domain.TrainUser;
 import com.java.user.domain.TrainUserSuggestion;
 
 public class TrainUserSugesstionRepository {
@@ -17,14 +16,13 @@ public class TrainUserSugesstionRepository {
 	//삽입
 	public void addSuggestion(TrainUserSuggestion tus) {
 		String sql = "INSERT INTO train_sugesstion "
-		        +"(suggestnum, user_id, user_sugesstion) "
+		        +"(suggestnum, user_id, user_suggestion) "
 				+ "VALUES(ts_seq.NEXTVAL,?,?)";
 
 		try(Connection conn = connection.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);) {
-			pstmt.setInt(1, tus.getSuggestNum());
-			pstmt.setString(2, tus.getUserId());
-			pstmt.setString(3, tus.getSuggestions());
+			pstmt.setString(1, tus.getUserId());
+			pstmt.setString(2, tus.getSuggestions());
 			
 			if(pstmt.executeUpdate() == 1) {
 				System.out.printf("\n### %s님의 건의사항이 신규 등록되었습니다.\n", tus.getUserId());
@@ -39,18 +37,18 @@ public class TrainUserSugesstionRepository {
 	}
 	
 	//전체 다 가져오기
-	public List<TrainUserSuggestion> searchingSuggestion(){
+	public List<TrainUserSuggestion> SearchSuggestion(){
 		List<TrainUserSuggestion> tusList = new ArrayList<>();
-		String sql = "Select * FROM train_sugesstion";
+		String sql = "SELECT * FROM train_suggestion";
 		
 		try(Connection conn = connection.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);) {
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				TrainUserSuggestion tus = new TrainUserSuggestion(
-						rs.getInt("suggestnum"),
+						rs.getInt("suggestNum"),
 						rs.getString("user_id"),
-						rs.getString("user_sugesstion")			
+						rs.getString("user_suggestion")			
 					);
 				tusList.add(tus);
 			}
@@ -63,7 +61,7 @@ public class TrainUserSugesstionRepository {
 	}
 	
 	//아이디로 가져오기
-	public List<TrainUserSuggestion> searchingSuggestion(String userId){
+	public List<TrainUserSuggestion> SearchSuggestion(String userId){
 		List<TrainUserSuggestion> tusList = new ArrayList<>();
 		String sql = "Select * FROM train_suggestion WHERE user_id=?";
 		
@@ -73,9 +71,9 @@ public class TrainUserSugesstionRepository {
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				TrainUserSuggestion tus = new TrainUserSuggestion(
-						rs.getInt("suggestnum"),
+						rs.getInt("suggestNum"),
 						rs.getString("user_id"),
-						rs.getString("user_sugesstion")			
+						rs.getString("user_suggestion")			
 					);
 				tusList.add(tus);
 			}
@@ -88,9 +86,9 @@ public class TrainUserSugesstionRepository {
 	}
 	
 	//조회번호로 가져오기
-	public List<TrainUserSuggestion> searchingSuggestion(int num){
+	public List<TrainUserSuggestion> SearchSuggestion(int num){
 		List<TrainUserSuggestion> tusList = new ArrayList<>();
-		String sql = "Select * FROM train_users WHERE suggestnum=?";
+		String sql = "Select * FROM train_suggestion WHERE suggestnum=?";
 		
 		try(Connection conn = connection.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);) {
@@ -100,7 +98,7 @@ public class TrainUserSugesstionRepository {
 				TrainUserSuggestion tus = new TrainUserSuggestion(
 						rs.getInt("suggestnum"),
 						rs.getString("user_id"),
-						rs.getString("user_sugesstion")			
+						rs.getString("user_suggestion")			
 					);
 				tusList.add(tus);
 			}

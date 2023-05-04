@@ -66,4 +66,29 @@ public class TrainsRepository {
 			}	
 			return trainList;
 		}
+	
+	public int ticketPrice(int tNo) {
+		int price = 0;
+		switch(tNo) {
+			case 2001: price = 30000;  break;
+			case 4001: price = 40000;  break;
+			case 6001: price = 10000;  break;
+			case 8001: price = 100000; break;
+		}		
+		return price;
+	}
+	
+	public String printTrainName(int tNo) {
+		String tName = "";
+		switch(tNo) {
+			case 2001: tName = "무궁화호";  break;
+			case 4001: tName = "새마을호";  break;
+			case 6001: tName = "ITX";  break;
+			case 8001: tName = "KTX";  break;
+		}		
+		return tName;
+	}
+
+
+	
 }
